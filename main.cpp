@@ -84,7 +84,7 @@ void cipherOptions()
 
      char firstOption;
 
-     while(encrypt != true || decrypt != true)
+     while(encrypt != true && decrypt != true)
      {
           cout << "Would you rather Encrypt [A] or Decrypt [B] your message: ";
           cin >> firstOption;
@@ -92,14 +92,19 @@ void cipherOptions()
           // The logic in the if else logic does run with any input that isn't A or B, but at the same time, it also runs the message even if it's A or B.
           // Chances are, you would have to update the logic in order to fix the output of this program, so it properly exits the current while loop.
 
-          if((firstOption != 'a' || firstOption != 'A') || (firstOption != 'b' || firstOption != 'B'))
+          if(firstOption == 'a' || firstOption == 'A')
           {
-               cout << "This input doesn't work, try again.";
+               cout << "Encryption set\n";
+               encrypt = true;
+          }
+          else if(firstOption == 'b' || firstOption == 'B')
+          {
+               cout << "Decryption set\n";
+               decrypt = true;
           }
           else
           {
-               encrypt = true;
-               break;
+               cout << "Invalid input, try again\n";
           }
           // (not a and not A) or (not b and not B). What is the simplified version of this logic?
      }
@@ -108,6 +113,8 @@ void cipherOptions()
 
 int main()
 {
+     
+
 /*
      How to use a caesar cipher.
 
@@ -119,8 +126,12 @@ int main()
      This program will likely use modolar arithmetic
     
 */
+
      //instructions();
      cipherOptions();
+
     
+    
+
      return 0;
 }
