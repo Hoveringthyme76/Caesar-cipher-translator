@@ -82,7 +82,8 @@ void cipherOptions()
      bool encrypt = false;
      bool decrypt = false;
 
-     char firstOption;
+     char firstOption;     //Choose to encrypt or decrypt
+     int secondOption = 1;     //Choose how many letters are shifted. It's 0 to account for the logic to work properly.
 
      while(encrypt != true && decrypt != true)
      {
@@ -106,8 +107,10 @@ void cipherOptions()
           {
                cout << "Invalid input, try again\n";
           }
-          // (not a and not A) or (not b and not B). What is the simplified version of this logic?
+          
      }
+
+     while(secondOption
 
 }
 
