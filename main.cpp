@@ -7,19 +7,68 @@
 using namespace std;
 
 
-void encrypt()
+void encryptMessage(int shift)
 {
+     char message[100];
 
+     //I think for now, I will only accept lowercase letters for this program.
+     cout << "Please enter the message you wish to encrypt or decrypt.\n"
+          << "It is important that you type each letter individually, then press enter.\n"
+          << "Once you are done, please input 0 as the last value in your message.\n";
+
+
+     for(int i = 0; i < 101; i++)
+     {
+          cin >> message[i];
+
+          if(i == 100)
+          {
+               cout << "Message limit reached. Encrypted message finalizing.\n";
+          }
+          else if(message[i] == '0')
+          {
+               cout << "Message finalizing...\n";
+               break;
+          }
+     }
+
+     this_thread::sleep_for(chrono::seconds(5));
+
+     for(int j = 0; j < 101; j++)
+     {
+          if(message[j] == '0')
+          {
+               break;
+          }
+
+          cout << message[j];
+     }
 }
 
-void decrypt()
+void decryptMessage(int shift)
 {
+     char message[100];
 
-}
+     //I think for now, I will only accept lowercase letters for this program.
+     cout << "Please enter the message you wish to encrypt or decrypt.\n"
+          << "It is important that you type each letter individually, then press enter.\n"
+          << "Once you are done, please input 0 as the last value in your message.\n";
 
-void cipherShift()
-{
 
+     for(int i = 0; i < 101; i++)
+     {
+          cin >> message[i];
+
+          if(i == 100)
+          {
+               cout << "Message limit reached. Encrypted message finalizing.\n";
+          }
+          else if(message[i] == '0')
+          {
+               cout << "Message finalizing.\n";
+               break;
+          }
+     }
 }
 
 void instructions()
@@ -82,17 +131,15 @@ void cipherOptions()
      bool encrypt = false;
      bool decrypt = false;
 
-     char firstOption;     //Choose to encrypt or decrypt
-     int secondOption = 1;     //Choose how many letters are shifted. It's 0 to account for the logic to work properly.
+     char firstOption;         //Choose to encrypt or decrypt
+     int secondOption = 0;     //Choose how many letters are shifted.
 
      while(encrypt != true && decrypt != true)
      {
           cout << "Would you rather Encrypt [A] or Decrypt [B] your message: ";
           cin >> firstOption;
 
-          // The logic in the if else logic does run with any input that isn't A or B, but at the same time, it also runs the message even if it's A or B.
-          // Chances are, you would have to update the logic in order to fix the output of this program, so it properly exits the current while loop.
-
+          
           if(firstOption == 'a' || firstOption == 'A')
           {
                cout << "Encryption set\n";
@@ -110,14 +157,42 @@ void cipherOptions()
           
      }
 
-     while(secondOption
+     int shift = 0;
+
+     
+     while(shift <= 0 || shift > 25)
+     {
+          cout << "How many letters would you like to shift by?: ";
+          cin >> secondOption;
+
+          
+          if(secondOption > 0 && secondOption <= 25)
+          {
+               cout << "Shift confirmed\n";
+               shift = secondOption;
+          }
+          else
+          {
+               cout << "Shift option choosen outside specified limit. Please input a value between 1-25, thank you! \n";
+          }
+     }
+
+     
+     if(encrypt == true)
+     {
+          encryptMessage(shift);
+     }
+     else if(decrypt == true)
+     {
+          decryptMessage(shift);
+     }
 
 }
 
 int main()
 {
      
-
+// Working on the cipherOptions function currently... Then encrypt function... Then decrypt function. (Make sure to delete one of these functions onces you think your done.)
 /*
      How to use a caesar cipher.
 
@@ -127,14 +202,11 @@ int main()
      4. Encrypted or decrypted message shown.
     
      This program will likely use modolar arithmetic
-    
 */
 
      //instructions();
      cipherOptions();
 
-    
-    
-
+     
      return 0;
 }
