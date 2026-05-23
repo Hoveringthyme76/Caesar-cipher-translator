@@ -6,12 +6,74 @@
 #include <thread>
 using namespace std;
 
+//I think for now, I will only accept lowercase letters for both functions encryptMessage and decryptMessage.
 
 void encryptMessage(int shift)
 {
      char message[100];
 
-     //I think for now, I will only accept lowercase letters for this program.
+     cout << "Please enter the message you wish to encrypt or decrypt.\n"
+          << "It is important that you type each letter individually, then press enter.\n"
+          << "Once you are done, please input 0 as the last value in your message.\n";
+
+
+     for(int i = 0; i < 101; i++)
+     {
+          cin >> message[i];
+
+          if(i == 100)
+          {
+               cout << "Message limit reached. Encrypted message finalizing.\n";
+          }
+          else if(message[i] == '0')
+          {
+               cout << "Message finalizing...\n";
+               break;
+          }
+     }
+
+     this_thread::sleep_for(chrono::seconds(5));
+
+     char encryptedMessage[100];
+     int aschiiValue;
+                                        //The aschiiValue primarily relates to the characters used in this program.
+                                        // 'a' = 97, while z = '122'.
+     char lowerCaseLetters[25] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+     int lowerCaseIndex[25];
+
+     int j;
+
+     while(j =! 26)
+     {
+          lowerCaseIndex[j] = (int)lowerCaseIndex;
+     }
+     
+     for(j = 0; j < 101; j++)
+     {
+          if(message[j] == '0')
+          {
+               break;
+          }
+
+          
+          encryptedMessage[j] = message[j] + shift;
+
+          aschiiValue = encryptedMessage[j];
+
+          this_thread::sleep_for(chrono::milliseconds(3));
+          cout << encryptedMessage[j];
+     }
+
+     this_thread::sleep_for(chrono::seconds(5));
+}
+
+// I first have to figure out how characters are defined in the program when it comes to it's respective number value. I assume that it has something to do with integers. 
+// Then I will add that program to both decrypt and encrypt functions.
+void decryptMessage(int shift)
+{
+     char message[100];
+
+     
      cout << "Please enter the message you wish to encrypt or decrypt.\n"
           << "It is important that you type each letter individually, then press enter.\n"
           << "Once you are done, please input 0 as the last value in your message.\n";
@@ -41,34 +103,11 @@ void encryptMessage(int shift)
                break;
           }
 
+          this_thread::sleep_for(chrono::milliseconds(3));
           cout << message[j];
      }
-}
 
-void decryptMessage(int shift)
-{
-     char message[100];
-
-     //I think for now, I will only accept lowercase letters for this program.
-     cout << "Please enter the message you wish to encrypt or decrypt.\n"
-          << "It is important that you type each letter individually, then press enter.\n"
-          << "Once you are done, please input 0 as the last value in your message.\n";
-
-
-     for(int i = 0; i < 101; i++)
-     {
-          cin >> message[i];
-
-          if(i == 100)
-          {
-               cout << "Message limit reached. Encrypted message finalizing.\n";
-          }
-          else if(message[i] == '0')
-          {
-               cout << "Message finalizing.\n";
-               break;
-          }
-     }
+     this_thread::sleep_for(chrono::seconds(5));
 }
 
 void instructions()
@@ -207,6 +246,6 @@ int main()
      //instructions();
      cipherOptions();
 
-     
+
      return 0;
 }
