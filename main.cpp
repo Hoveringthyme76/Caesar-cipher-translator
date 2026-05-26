@@ -38,16 +38,23 @@ void encryptMessage(int shift)
      int aschiiValue;
                                         //The aschiiValue primarily relates to the characters used in this program.
                                         // 'a' = 97, while z = '122'.
-     char lowerCaseLetters[25] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-     int lowerCaseIndex[25];
+     //char lowerCaseLetters[25] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-     int j;
+     int j = 0;
 
-     while(j =! 26)
+     int code[26];
+
+     while(j < 26)
      {
-          lowerCaseIndex[j] = (int)lowerCaseIndex;
+          aschiiValue = 97 + j;
+          code[j] = aschiiValue - 96;
+          j++;
      }
+
      
+     int shiftedChar = 0;
+
+
      for(j = 0; j < 101; j++)
      {
           if(message[j] == '0')
@@ -55,10 +62,20 @@ void encryptMessage(int shift)
                break;
           }
 
-          
-          encryptedMessage[j] = message[j] + shift;
 
-          aschiiValue = encryptedMessage[j];
+          //I'm currently trying to do aschii to allow my cipher to properly work, but I may decide to go back to the cipher program, once I have a firm understanding of both subjects.
+          //For now, I'm at least glad that I managed to 
+          if((message[j] - 'A' + shift) % 26 <= 1)
+          {
+               aschiiValue = 96 + (message[j] - 'A' + shift) % 26;
+               encryptedMessage[j] = aschiiValue;
+          }
+          else
+          {
+               encryptedMessage[j] = message[j] + shift;
+          }
+          
+
 
           this_thread::sleep_for(chrono::milliseconds(3));
           cout << encryptedMessage[j];
